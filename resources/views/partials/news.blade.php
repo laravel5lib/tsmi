@@ -6,8 +6,8 @@
         <div class="float-sm-right v-center">
             <time class="mr-1">{{$item->created_at->format('H:i')}}</time>
             <span>
-                            <img src="{{optional($item->source)->logo}}">
-                {{optional($item->source)->host}}
+                            <img src="{{$item->source->logo}}">
+                {{$item->source->host}}
                         </span>
         </div>
     </div>
