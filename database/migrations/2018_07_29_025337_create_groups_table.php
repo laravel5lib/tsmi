@@ -18,7 +18,7 @@ class CreateGroupsTable extends Migration
             $table->string('key');
             $table->jsonb('news');
             $table->integer('count');
-            $table->bigIncrements('article_id');
+            $table->bigInteger('article_id');
             $table->timestamps();
         });
     }
