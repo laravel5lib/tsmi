@@ -1,0 +1,27 @@
+// Variables
+@import "variables";
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+@import "item";
+
+
+.img-full{
+  width: 100%;
+  object-fit: cover;
+}
+
+.v-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg-black-opacity {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(32, 43, 54, 0.5);
+}
