@@ -38,7 +38,7 @@ class NewsController extends Controller
     public function image(Article $article)
     {
         abort_if(is_null($article->image), 404);
-        $name = sha1($article->image) . '.jpg';
+        $name = sha1($article->image) . '.'. pathinfo($article->image, PATHINFO_EXTENSION);;
 
         $image = Cache::remember($name, now()->addDay(1), function () use ($article, $name) {
             return (string) Image::make($article->image)->encode('data-url',75);
