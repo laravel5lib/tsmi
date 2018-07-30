@@ -41,10 +41,10 @@ class NewsController extends Controller
         $name = sha1($article->image) . '.jpg';
 
         $image = Cache::remember($name, now()->addDay(1), function () use ($article, $name) {
-            return (string) Image::make($article->image)->encode('data-url');
+            return (string) Image::make($article->image)->encode('data-url',75);
         });
 
-        return Image::make($image)->response();
+        return Image::make($image)->response('jpg',75);
     }
 
     /**
