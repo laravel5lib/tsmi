@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Твоё СМИ - Новостной агрегатор. Самые последний и свежие новости в России, в сети, в мире. Узнавайте новости первыми."> ТСМИ - Новостной агрегатор. Самые последний и свежие новости в России, в сети, в мире. Узнавайте новости первыми.</title>
+    <title>Твоё СМИ - Новостной агрегатор. Самые последний и свежие новости в России, в сети, в мире. Узнавайте новости первыми."</title>
     <meta name="description" content="Самые горячие новости в России, в США, в мире. Последние события в мире новостей.">
     <meta name="keywords" content="Новости, вести, события, последние, горячее, в мире, в России, в США.">
     <meta name="csrf-token" content="{{csrf_token()}}">
@@ -15,8 +15,6 @@
     <meta name="turbolinks-root" content="/">
     <meta http-equiv="X-DNS-Prefetch-Control" content="on"/>
     <link rel="dns-prefetch" href="{{ config('app.url') }}"/>
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
-
 
     <script src="{{ mix('/js/manifest.js')}}" type="text/javascript"></script>
     <script src="{{ mix('/js/vendor.js')}}" type="text/javascript"></script>
@@ -28,14 +26,31 @@
 <nav class="site-header sticky-top bg-white">
     <div class="site-header sticky-top bg-dark" style="background: #333333;">
         <div class="container d-flex flex-column flex-md-row justify-content-between" style="align-items: center;">
-            <a href="#" class="mr-5">
+            <a href="{{url('/')}}" class="mr-5">
                 <img src="/img/logo.svg" height="50px" alt="Responsive image">
             </a>
             <h5 class="my-0 mr-md-auto font-weight-normal text-white">15:17, 18 июля, среда</h5>
+            <div class="my-2 my-md-0 mr-md-auto ml-md-auto">
+                <a class="p-2 text-white" href="#">Только главное</a>
+                <a class="p-2 text-white" href="#">Всё подрят</a>
+            </div>
+
             <div class="my-2 my-md-0">
-                <span class="p-2 text-white" href="#">USD: 63,05   0,45</span>
-                <span class="p-2 text-white" href="#">EUR: 73,26   0,30</span>
-                <span class="p-2 text-white" href="#">Brent: 71,74   0,00</span>
+                <span class="p-2 text-white">
+                    <span class="text-muted">USD:</span>
+                    63,05
+                    <span class="text-success">&#8593; 0,45</span>
+                </span>
+                <span class="p-2 text-white">
+                    <span class="text-muted">EUR:</span>
+                    73,26
+                    <span class="text-success">&#8593; 0,30</span>
+                </span>
+                <span class="p-2 text-white">
+                    <span class="text-muted">Brent:</span>
+                    71,74
+                    <span class="text-success">&#8595; 0,01</span>
+                </span>
             </div>
         </div>
     </div>
@@ -45,16 +60,26 @@
 <main id="app" class="container pt-5 pb-5">
 
 
-    <div class="row justify-content-md-center" data-controller="news" data-news-type="group" data-news-paginate="2" data-news-id="{{$records['groups']}}" data-news-load="0">
+    <div class="row justify-content-md-center"
+         data-controller="news"
+         data-news-type="group"
+         data-news-paginate="2"
+         data-news-id="{{$records['groups']}}"
+         data-news-load="0">
         <div class="group-news col col-lg-9">
 
             @include('partials.group')
 
         </div>
-        <div class="last-news col col-lg-3" data-controller="news" data-news-type="last" data-news-paginate="2" data-news-id="{{$records['article']}}" data-news-load="0">
+        <div class="last-news col col-lg-3"
+             data-controller="news"
+             data-news-type="last"
+             data-news-paginate="2"
+             data-news-id="{{$records['article']}}"
+             data-news-load="0">
 
             <div class="pb-2">
-                <h2>Топ новости часа</h2>
+                <h1 class="h3">Последние новости</h1>
             </div>
 
             @include('partials.news')
