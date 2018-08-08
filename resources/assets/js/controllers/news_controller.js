@@ -9,11 +9,21 @@ export default class extends Controller {
 
         let controller = this;
 
+
+        $(window).scroll(function () {
+            if ($(window).scrollTop() >= $(document).height() - $(window).height() - 300) {
+                controller.loadMore();
+            }
+        });
+
+
+/*
         $(window).on('scroll', function () {
             if (($(document).height() - $(window).scrollTop() + $(window).height()) < ($(document).height() + $(document).innerHeight()) * 0.30) {
                 controller.loadMore();
             }
-        }).scroll();
+        });
+        */
     }
 
     /**
@@ -30,7 +40,7 @@ export default class extends Controller {
         let type = this.data.get("type");
         let controller = this;
 
-        axios.get('/load/' + type + '/' + parseInt(this.data.get("id")), {
+        axios.get('/load/' + type + '/' + this.data.get("created"), {
             params: {
                 page: paginate
             }

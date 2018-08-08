@@ -12,13 +12,13 @@
 
 
     {{-- favicon --}}
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#83c600">
-    <meta name="msapplication-TileColor" content="#83c600">
-    <meta name="theme-color" content="#ffffff">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#83c600">
+        <meta name="msapplication-TileColor" content="#83c600">
+        <meta name="theme-color" content="#ffffff">
     {{-- /favicon --}}
 
 
@@ -74,7 +74,7 @@
          data-controller="news"
          data-news-type="group"
          data-news-paginate="2"
-         data-news-id="{{$records['groups']}}"
+         data-news-created="{{$records['groups']}}"
          data-news-load="0">
         <div class="group-news col col-lg-9">
 
@@ -85,7 +85,7 @@
              data-controller="news"
              data-news-type="last"
              data-news-paginate="2"
-             data-news-id="{{$records['article']}}"
+             data-news-created="{{$records['article']}}"
              data-news-load="0">
 
             <div class="pb-2">

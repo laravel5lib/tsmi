@@ -14,7 +14,7 @@
                                         </span>
                                 </span>
                                 <p class="h1 text-white pt-2 pr-5 pb-4">
-                                  {{$item->article->title}} {{count($item->news)}}
+                                  {{$item->article->title}}
                                 </p>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                                             </span>
                                         </span>
                                         <p class="h1 text-white pt-2 pr-5 pb-4">
-                                          {{$item->article->title}} {{count($item->news)}}
+                                          {{$item->article->title}}
                                         </p>
                                     </div>
                                 </div>

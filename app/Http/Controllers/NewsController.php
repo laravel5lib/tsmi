@@ -26,8 +26,8 @@ class NewsController extends Controller
             'groups' => Group::getLast(),
 
             'records' => [
-                'article' => Article::select('created_at')->orderBy('id', 'Desc')->first()->created_at,
-                'groups'  => Group::select('created_at')->orderBy('id', 'Desc')->first()->created_at,
+                'article' => Article::select('created_at')->orderBy('id', 'Desc')->first()->created_at->toW3cString(),
+                'groups'  => Group::select('created_at')->orderBy('id', 'Desc')->first()->created_at->toW3cString(),
             ],
         ]);
     }
@@ -76,20 +76,20 @@ class NewsController extends Controller
 
     /**
      * @param string $type
-     * @param int    $id
+     * @param string $created_at
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function load(string $type, int $id)
+    public function load(string $type, string $created_at)
     {
         if ($type == 'group') {
             return view('partials.group', [
-                'groups' => Group::getLast($id),
+                'groups' => Group::getLast($created_at),
             ]);
         }
 
         return view('partials.news', [
-            'last' => Article::getLast($id),
+            'last' => Article::getLast($created_at),
         ]);
     }
 

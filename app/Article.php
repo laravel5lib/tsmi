@@ -54,7 +54,7 @@ class Article extends Model
             ->orderBy('created_at', 'Desc');
 
         if ($created_at !== null) {
-            $last->where('created_at', '<', $created_at);
+            $last->whereDate('created_at', '<', $created_at);
         }
 
         return $last->paginate(15);
