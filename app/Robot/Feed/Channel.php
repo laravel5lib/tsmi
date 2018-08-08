@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Robot\Feed;
 
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 /**
  * Class Channel
@@ -33,25 +34,33 @@ class Channel
         foreach ($xml->channel->item as $entry) {
 
             $createdAt = self::clearDate((string) $entry->pubDate);
-            if($lastUpdate->gt($createdAt)){
+            if ($lastUpdate->gt($createdAt)) {
                 continue;
             }
 
             $item = [
+                'id'          => (string) Str::uuid(),
                 'title'       => self::clearString((string) $entry->title),
                 'description' => self::clearString((string) $entry->description),
                 'created_at'  => self::clearDate((string) $entry->pubDate),
                 'link'        => self::clearUrl((string) $entry->link),
                 'resource_id' => $resourceId,
                 'image'       => null,
-                'type'        => null,
             ];
 
             if ((bool) $entry->enclosure) {
-                $item = array_merge($item, [
-                    'image' => (string) $entry->enclosure->attributes()->url,
-                    'type'  => (string) $entry->enclosure->attributes()->type,
-                ]);
+
+                $image = (string) $entry->enclosure->attributes()->url;
+
+                if (
+                    strpos($image, '.png') !== false
+                    || strpos($image, '.jpg') !== false
+                ) {
+
+                    $item = array_merge($item, [
+                        'image' => $image,
+                    ]);
+                }
             }
 
             $items[] = $item;

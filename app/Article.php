@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Article extends Model
 {
+
     /**
      * @var array
      */
@@ -28,23 +29,32 @@ class Article extends Model
         'description',
         'link',
         'image',
-        'type',
-        'created_at',
+        'local_image',
         'resource_id',
+        'created_at',
+        'updated_at',
     ];
 
     /**
-     * @param int $id
-     *
-     * @return mixed
+     * @var array
      */
-    public static function getLast($id = 0)
+    protected $casts = [
+        'id'          => 'string',
+        'local_image' => 'string',
+    ];
+
+    /**
+     * @param null $created_at
+     *
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public static function getLast($created_at = null)
     {
         $last = self::with('source')
             ->orderBy('created_at', 'Desc');
 
-        if ($id !== 0) {
-            $last->where('id', '<', $id);
+        if ($created_at !== null) {
+            $last->where('created_at', '<', $created_at);
         }
 
         return $last->paginate(15);

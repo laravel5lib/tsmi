@@ -3,11 +3,10 @@
 namespace App\Console\Commands;
 
 use App\Article;
-use App\Group;
 use App\Robot\Feed\Channel;
 use App\Robot\Robot;
 use App\Source;
-use Carbon\Carbon;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Console\Command;
 
@@ -43,22 +42,27 @@ class ParseNews extends Command
     /**
      * Execute the console command.
      *
+     * @param \App\Robot\Robot $robot
+     *
      * @return mixed
      */
-    public function handle()
+    public function handle(Robot $robot)
     {
         $source = Source::all();
-
-        $robot = new Robot();
-        $robot->browse(
-            $source->pluck('rss', 'id')->toArray()
-            , function (Response $response, $id) use ($source) {
+        $robot->browse($source->pluck('rss', 'id')->toArray(), function (Response $response, $id) use ($source) {
             $content = $response->getBody()->getContents();
-            $lastUpdate = new Carbon();
-            $lastUpdate->subMinute(5);
-            $channel = Channel::getItems($content, $source[$id]->id, $lastUpdate);
+            $channel = Channel::getItems($content, $source[$id]->id, now()->subMinute(3));
             Article::insert($channel);
+            $source[$id]->save([
+                'status'      => 'success',
+                'last_update' => time(),
+            ]);
             $this->line('Добавлено: ' . count($channel));
+        }, function (RequestException $exception, $id) use ($source) {
+            $source[$id]->save([
+                'status_last_update' => 'fail',
+                'last_update'        => time(),
+            ]);
         });
     }
 

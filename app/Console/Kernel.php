@@ -3,6 +3,8 @@
 namespace App\Console;
 
 use App\Console\Commands\AddSource;
+use App\Console\Commands\ClearImageCache;
+use App\Console\Commands\DownloadImage;
 use App\Console\Commands\GroupNews;
 use App\Console\Commands\ParseNews;
 use Illuminate\Console\Scheduling\Schedule;
@@ -19,6 +21,8 @@ class Kernel extends ConsoleKernel
         GroupNews::class,
         ParseNews::class,
         AddSource::class,
+        ClearImageCache::class,
+        DownloadImage::class,
     ];
 
     /**

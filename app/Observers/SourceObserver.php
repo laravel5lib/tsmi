@@ -7,6 +7,17 @@ use Illuminate\Support\Facades\Storage;
 
 class SourceObserver
 {
+
+    /**
+     * @param \App\Source $source
+     */
+    public function creating(Source $source){
+        $url = parse_url($source->rss);
+        $url = $url['host'];
+        $source->host = $url;
+        $source->title = $url;
+    }
+
     /**
      * Handle to the source "created" event.
      *

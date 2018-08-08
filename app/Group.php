@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model
@@ -33,7 +32,7 @@ class Group extends Model
         'key'        => 'string',
         'news'       => 'array',
         'count'      => 'integer',
-        'article_id' => 'integer',
+        'article_id' => 'string',
     ];
 
     /**
@@ -45,17 +44,17 @@ class Group extends Model
     }
 
     /**
-     * @param int $id
+     * @param null $created_at
      *
      * @return mixed
      */
-    public static function getLast($id = 0)
+    public static function getLast($created_at = null)
     {
         $last = self::orderBy('created_at', 'Desc')
             ->orderBy('count', 'Desc');
 
-        if ($id !== 0) {
-            $last->where('id', '<', $id);
+        if ($created_at !== null) {
+            $last->where('created_at', '<', $created_at);
         }
 
         return $last->paginate(12);
@@ -73,7 +72,9 @@ class Group extends Model
             reset($group);
             $first_article = key($group);
 
-            Group::whereBetween('updated_at', [Carbon::now()->subHours(5), Carbon::now()])
+            Group::whereBetween('updated_at', [
+                now()->subHours(10), now()
+            ])
                 ->updateOrCreate([
                     'key' => $key,
                 ], [
@@ -97,7 +98,7 @@ class Group extends Model
         });
 
         $articles = Article::whereNotNull('image')
-            ->whereBetween('created_at', [Carbon::now()->subHours(5), Carbon::now()])
+            ->whereBetween('created_at', [now()->subHours(10), now()])
             ->pluck('title', 'id');
 
         $newarr = [];
@@ -169,7 +170,7 @@ class Group extends Model
             }
 
             // Убираем все группы если в них меньше 5 новостей
-            if (count($value) < 3) {
+            if (count($value) < 5) {
                 unset($result[$key]);
             }
 
@@ -241,6 +242,11 @@ class Group extends Model
         foreach ($texts as $item) {
             $this->count = $this->count + 1;
             $percent += similar_text($text, $item);
+        }
+
+
+        if($percent > 100){
+            return 100;
         }
 
         return $percent;

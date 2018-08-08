@@ -12,5 +12,5 @@
 */
 
 Route::get('/', 'NewsController@index');
-Route::get('/image/{article}', 'NewsController@image')->name('image');
+Route::get('/image/{group}/{format?}', 'NewsController@image')->name('image');
 Route::get('/load/{type}/{id}', 'NewsController@load');

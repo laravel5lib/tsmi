@@ -9,17 +9,17 @@
                                 <span class="bg-white p-1">
                                         <time class="mr-1">{{$item->article->created_at->format('H:i')}}</time>
                                         <span>
-                                            <img src="{{optional($item->article->source)->logo}}">
+                                            <img src="/storage/{{optional($item->article->source)->logo}}">
                                             {{optional($item->article->source)->host}}
                                         </span>
                                 </span>
                                 <p class="h1 text-white pt-2 pr-5 pb-4">
-                                    {{$item->article->title}}
+                                  {{$item->article->title}} {{count($item->news)}}
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <img src="{{route('image',$item->article)}}" alt="{{$item->article->title}}" class="img-full img-fluid">
+                    <img src="/storage/{{$item->article->local_image}}" alt="{{$item->article->title}}" class="img-full img-fluid">
                 </a>
             </div>
         </div>
@@ -38,14 +38,14 @@
                             <span class="bg-white p-1">
                                 <time class="mr-1">{{$item->article->created_at->format('H:i')}}</time>
                                 <span>
-                                    <img src="{{optional($item->article->source)->logo}}">
+                                    <img src="/storage/{{optional($item->article->source)->logo}}">
                                     {{optional($item->article->source)->host}}
                                 </span>
                             </span>
                         </div>
                     </div>
                     </div>
-                <img src="{{route('image',$item->article)}}" alt="{{$item->article->title}}" class="img-full img-fluid">
+                <img src="/storage/{{$item->article->local_image}}" alt="{{$item->article->title}}" class="img-full img-fluid">
             </a>
         </div>
         <div class="mt-2">
@@ -68,17 +68,17 @@
                                         <span class="bg-white p-1">
                                             <time class="mr-1">{{$item->article->created_at->format('H:i')}}</time>
                                             <span>
-                                                <img src="{{optional($item->article->source)->logo}}">
+                                                <img src="/storage/{{optional($item->article->source)->logo}}">
                                                 {{optional($item->article->source)->host}}
                                             </span>
                                         </span>
                                         <p class="h1 text-white pt-2 pr-5 pb-4">
-                                            {{$item->article->title}}
+                                          {{$item->article->title}} {{count($item->news)}}
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                            <img src="{{route('image',$item->article)}}" alt="{{$item->article->title}}" class="img-full img-fluid">
+                            <img src="/storage/{{$item->article->local_image}}" alt="{{$item->article->title}}" class="img-full img-fluid">
                         </a>
                     </div>
                 @endforeach
@@ -95,14 +95,14 @@
                                         <span class="bg-white p-1">
                                             <time class="mr-1">{{$item->article->created_at->format('H:i')}}</time>
                                             <span>
-                                                <img src="{{optional($item->article->source)->logo}}">
+                                                <img src="/storage/{{optional($item->article->source)->logo}}">
                                                 {{optional($item->article->source)->host}}
                                             </span>
                                         </span>
                                     </div>
                                 </div>
                             </div>
-                            <img src="{{route('image',$item->article)}}" alt="{{$item->article->title}}" class="img-full img-fluid">
+                            <img src="/storage/{{$item->article->local_image}}" alt="{{$item->article->title}}" class="img-full img-fluid">
                         </a>
                     </div>
                     <div class="mt-2">
@@ -123,7 +123,7 @@
                     <div class="float-sm-right v-center">
                         <time class="mr-1">{{$item->article->created_at->format('H:i')}}</time>
                         <span>
-                            <img src="{{$item->article->source->logo}}">
+                            <img src="/storage/{{$item->article->source->logo}}">
                             {{$item->article->source->host}}
                         </span>
                     </div>

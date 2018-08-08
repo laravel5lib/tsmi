@@ -20,7 +20,10 @@ class Source extends Model
         'title',
         'logo',
         'rss',
-        'host'
+        'host',
+        'status',
+        'status_last_update',
+        'last_update',
     ];
 
     /**

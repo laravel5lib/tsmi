@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Group;
+use App\Observers\GroupObserver;
 use App\Observers\SourceObserver;
 use App\Source;
 use Carbon\Carbon;
@@ -20,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
         Carbon::setLocale('ru');
         Carbon::setUtf8(true);
         Source::observe(SourceObserver::class);
+        Group::observe(GroupObserver::class);
     }
 
     /**

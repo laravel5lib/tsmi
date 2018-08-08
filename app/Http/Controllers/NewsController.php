@@ -6,7 +6,9 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Group;
+use App\Robot\Robot;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 /**
@@ -24,27 +26,52 @@ class NewsController extends Controller
             'groups' => Group::getLast(),
 
             'records' => [
-                'article' => Article::select('id')->orderBy('id', 'Desc')->first()->id,
-                'groups'  => Group::select('id')->orderBy('id', 'Desc')->first()->id,
+                'article' => Article::select('created_at')->orderBy('id', 'Desc')->first()->created_at,
+                'groups'  => Group::select('created_at')->orderBy('id', 'Desc')->first()->created_at,
             ],
         ]);
     }
 
     /**
-     * @param \App\Article $article
+     * @param \App\Group $group
+     * @param string     $format
      *
      * @return mixed
      */
-    public function image(Article $article)
+    public function image(Group $group, $format = '.jpg')
     {
-        abort_if(is_null($article->image), 404);
-        $name = sha1($article->image) . '.'. pathinfo($article->image, PATHINFO_EXTENSION);;
+        $disk =   Storage::disk('public');
+        $images = Article::where('id',array_keys($group->news))->pluck('image');
+        //$format = str_replace('.','',$format);
+        $storage = 'images/'.date("YmdH/");
 
-        $image = Cache::remember($name, now()->addDay(1), function () use ($article, $name) {
-            return (string) Image::make($article->image)->encode('data-url',75);
-        });
 
-        return Image::make($image)->response('jpg',75);
+        foreach ($images as $image){
+           // try {
+
+                if($disk->exists( $image.$format)){
+                    return redirect()->to($disk->url( $image.$format));
+                }
+
+                //$image = Cache::remember($image, now()->addDay(1), function () use ($image,$storage,$format) {
+                    //$image = Image::make($image)->encode('data-url');
+
+                    //$imageSave = clone $image;
+                    $disk->makeDirectory($storage);
+
+                    Image::make($image)
+                        ->encode(str_replace('.','',$format))
+                        ->save(public_path($storage.sha1($image).$format),75);
+
+                    //dd($image);
+                  //  return (string) $image;
+                //});
+
+                return Image::make($image)->response($format, 75);
+            //}catch (\Exception $exception){
+                //continue;
+            //}
+        }
     }
 
     /**
@@ -64,5 +91,13 @@ class NewsController extends Controller
         return view('partials.news', [
             'last' => Article::getLast($id),
         ]);
+    }
+
+    /**
+     * @param \App\Article $article
+     */
+    public function trek(Article $article)
+    {
+
     }
 }
