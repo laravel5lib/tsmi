@@ -73,7 +73,7 @@ class Group extends Model
             $first_article = key($group);
 
             Group::whereBetween('updated_at', [
-                now()->subHours(10), now()
+                now()->subHours(24), now()
             ])
                 ->updateOrCreate([
                     'key' => $key,
@@ -98,7 +98,7 @@ class Group extends Model
         });
 
         $articles = Article::whereNotNull('image')
-            ->whereBetween('created_at', [now()->subHours(10), now()])
+            ->whereBetween('created_at', [now()->subHours(24), now()])
             ->pluck('title', 'id');
 
         $newarr = [];
@@ -244,9 +244,8 @@ class Group extends Model
             $percent += similar_text($text, $item);
         }
 
-
-        if($percent > 100){
-            return 100;
+        if($percent > 1000){
+            $percent = 1000;
         }
 
         return $percent;
