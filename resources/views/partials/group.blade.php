@@ -2,7 +2,7 @@
     <div class="row pb-4">
         <div class="col-sm-12">
             <div class="item">
-                <a href="{{$item->article->link}}" target="_blank">
+                <a href="{{route('show',$item)}}">
                     <div class="bg-black-opacity">
                         <div class="bottom">
                             <div class="text-right" style="max-width:600px">
@@ -31,7 +31,7 @@
     @foreach($items = $groups->slice(1,3) as $item)
         <div class="col-sm-4">
         <div class="item">
-                <a href="{{$item->article->link}}" target="_blank">
+            <a href="{{route('show',$item)}}">
                     <div class="bg-black-opacity">
                     <div class="bottom pb-3">
                         <div class="text-right">
@@ -49,7 +49,7 @@
             </a>
         </div>
         <div class="mt-2">
-            <a href="{{$item->article->link}}" target="_blank" class="text-dark">{{$item->article->title}}</a>
+            <a href="{{route('show',$item)}}" class="text-dark">{{$item->article->title}}</a>
         </div>
     </div>
     @endforeach
@@ -61,7 +61,7 @@
             <div class="col-sm-12">
                 @foreach($items = $groups->slice(4,1) as $item)
                     <div class="item">
-                        <a href="{{$item->article->link}}" target="_blank">
+                        <a href="{{route('show',$item)}}">
                             <div class="bg-black-opacity">
                                 <div class="bottom">
                                     <div class="text-right" style="max-width:600px">
@@ -88,7 +88,7 @@
             @foreach($items = $groups->slice(5,2) as $item)
                 <div class="col-sm-6">
                     <div class="item">
-                        <a href="{{$item->article->link}}" target="_blank">
+                        <a href="{{route('show',$item)}}">
                             <div class="bg-black-opacity">
                                 <div class="bottom pb-3">
                                     <div class="text-right">
@@ -106,7 +106,7 @@
                         </a>
                     </div>
                     <div class="mt-2">
-                        <a href="{{$item->article->link}}" target="_blank" class="text-dark">{{$item->article->title}}</a>
+                        <a href="{{route('show',$item)}}" class="text-dark">{{$item->article->title}}</a>
                     </div>
             </div>
             @endforeach
@@ -118,7 +118,7 @@
             @foreach($items = $groups->slice(7,5) as $item)
                 <div class="pb-5">
                     <div>
-                        <a href="{{$item->article->link}}" target="_blank" rel="noopener noreferrer" class="text-dark">{{$item->article->title}}</a>
+                        <a href="{{route('show',$item)}}" class="text-dark">{{$item->article->title}}</a>
                     </div>
                     <div class="float-sm-right v-center">
                         <time class="mr-1">{{$item->article->created_at->format('H:i')}}</time>

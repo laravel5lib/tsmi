@@ -6,10 +6,6 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Group;
-use App\Robot\Robot;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 
 /**
  * Class NewsController
@@ -33,48 +29,6 @@ class NewsController extends Controller
     }
 
     /**
-     * @param \App\Group $group
-     * @param string     $format
-     *
-     * @return mixed
-     */
-    public function image(Group $group, $format = '.jpg')
-    {
-        $disk =   Storage::disk('public');
-        $images = Article::where('id',array_keys($group->news))->pluck('image');
-        //$format = str_replace('.','',$format);
-        $storage = 'images/'.date("YmdH/");
-
-
-        foreach ($images as $image){
-           // try {
-
-                if($disk->exists( $image.$format)){
-                    return redirect()->to($disk->url( $image.$format));
-                }
-
-                //$image = Cache::remember($image, now()->addDay(1), function () use ($image,$storage,$format) {
-                    //$image = Image::make($image)->encode('data-url');
-
-                    //$imageSave = clone $image;
-                    $disk->makeDirectory($storage);
-
-                    Image::make($image)
-                        ->encode(str_replace('.','',$format))
-                        ->save(public_path($storage.sha1($image).$format),75);
-
-                    //dd($image);
-                  //  return (string) $image;
-                //});
-
-                return Image::make($image)->response($format, 75);
-            //}catch (\Exception $exception){
-                //continue;
-            //}
-        }
-    }
-
-    /**
      * @param string $type
      * @param string $created_at
      *
@@ -94,10 +48,30 @@ class NewsController extends Controller
     }
 
     /**
-     * @param \App\Article $article
+     * @param \App\Group $group
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function trek(Article $article)
+    public function show(Group $group)
     {
+        $ids = array_keys($group->news);
+        $groups = Article::whereIn('id', $ids)->orderBy('description')->get();
+        $main = $groups->slice(0, 1)->first();
 
+        return view('page', [
+            'last'   => Article::getLast(),
+            'main'   => $main,
+            'groups' => $groups,
+        ]);
+    }
+
+    /**
+     * @param \App\Article $article
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function link(Article $article)
+    {
+        return redirect()->to($article->link);
     }
 }
