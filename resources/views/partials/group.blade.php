@@ -19,7 +19,7 @@
                             </div>
                         </div>
                     </div>
-                    <img src="/storage/{{$item->article->local_image}}" alt="{{$item->article->title}}" class="img-full img-fluid">
+                    <img src="/storage/{{$item->article->local_image}}" alt="{{$item->article->title}}" class="img-full img-fluid img-md">
                 </a>
             </div>
         </div>
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     </div>
-                <img src="/storage/{{$item->article->local_image}}" alt="{{$item->article->title}}" class="img-full img-fluid">
+                <img src="/storage/{{$item->article->local_image}}" alt="{{$item->article->title}}" class="img-full img-fluid img-sm">
             </a>
         </div>
         <div class="mt-2">
@@ -102,7 +102,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <img src="/storage/{{$item->article->local_image}}" alt="{{$item->article->title}}" class="img-full img-fluid">
+                            <img src="/storage/{{$item->article->local_image}}" alt="{{$item->article->title}}" class="img-full img-fluid img-sm">
                         </a>
                     </div>
                     <div class="mt-2">

@@ -23,7 +23,7 @@
                     <div class="item">
                         <a href="{{route('link',$main)}}" target="_blank">
                             <img src="/storage/{{$main->local_image}}"
-                                 alt="{{$main->title}}" class="img-full img-fluid">
+                                 alt="{{$main->title}}" class="img-full img-fluid img-md">
                         </a>
                     </div>
                 </div>
