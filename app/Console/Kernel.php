@@ -7,8 +7,15 @@ use App\Console\Commands\ClearImageCache;
 use App\Console\Commands\DownloadImage;
 use App\Console\Commands\GroupNews;
 use App\Console\Commands\ParseNews;
+use App\Console\Commands\TestNews;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use NlpTools\Classifiers\MultinomialNBClassifier;
+use NlpTools\Documents\TokensDocument;
+use NlpTools\Documents\TrainingSet;
+use NlpTools\FeatureFactories\DataAsFeatures;
+use NlpTools\Models\FeatureBasedNB;
+use NlpTools\Tokenizers\WhitespaceTokenizer;
 
 class Kernel extends ConsoleKernel
 {
@@ -23,6 +30,7 @@ class Kernel extends ConsoleKernel
         AddSource::class,
         ClearImageCache::class,
         DownloadImage::class,
+        TestNews::class,
     ];
 
     /**
@@ -48,4 +56,5 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
+
 }
