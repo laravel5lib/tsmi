@@ -51,7 +51,7 @@ class Group extends Model
     public static function getLast($created_at = null)
     {
         $last = self::orderBy('count', 'Desc')
-            ->orderBy('updated_at', 'Desc');
+            ->orderBy('created_at', 'Desc');
 
         if ($created_at !== null) {
             $last->whereDate('created_at', '<', $created_at);
