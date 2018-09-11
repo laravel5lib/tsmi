@@ -44,17 +44,17 @@ class Group extends Model
     }
 
     /**
-     * @param null $updated_at
+     * @param null $created_at
      *
      * @return mixed
      */
-    public static function getLast($updated_at = null)
+    public static function getLast($created_at = null)
     {
-        $last = self::orderBy('updated_at', 'Desc')
-            ->orderBy('count', 'Desc');
+        $last = self::orderBy('count', 'Desc')
+            ->orderBy('updated_at', 'Desc');
 
-        if ($updated_at !== null) {
-            $last->whereDate('updated_at', '<', $updated_at);
+        if ($created_at !== null) {
+            $last->whereDate('created_at', '<', $created_at);
         }
 
         return $last->paginate(12);
