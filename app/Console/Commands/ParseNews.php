@@ -51,7 +51,7 @@ class ParseNews extends Command
         $source = Source::all();
         $robot->browse($source->pluck('rss', 'id')->toArray(), function (Response $response, $id) use ($source) {
             $content = $response->getBody()->getContents();
-            $channel = Channel::getItems($content, $source[$id]->id, now()->subMinute(3));
+            $channel = Channel::getItems($content, $source[$id]->id, now()->subMinute(5));
             Article::insert($channel);
             $source[$id]->save([
                 'status'      => 'success',
