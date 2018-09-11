@@ -99,7 +99,8 @@ class Group extends Model
 
         $articles = Article::whereNotNull('image')
             ->whereBetween('created_at', [now()->subHours(24), now()])
-            ->pluck('title', 'id');
+            ->pluck('title', 'id')
+            ->unique();
 
         $newarr = [];
 
