@@ -9,35 +9,39 @@
         <div class="group-news col col-lg-9">
 
 
-            <main class="row pb-4">
-                <div class="col-sm-12">
+            <main class="pb-3">
+                <div class="row">
+                    <div class="col-sm-12">
 
-                         <span>
-                              <img src="/storage/{{optional($main->source)->logo}}">
-                             {{optional($main->source)->host}}
-                         </span>
+                             <span>
+                                  <img async src="/storage/{{optional($main->source)->logo}}">
+                                 {{optional($main->source)->host}}
+                             </span>
 
 
-                    <h1 class="text-black mt-1 mb-4 font-weight-normal"> {{$main->title}}</h1>
+                        <h1 class="text-black mt-1 mb-4 font-weight-normal"> {{$main->title}}</h1>
 
-                    <div class="item">
-                        <a href="{{route('link',$main)}}" target="_blank">
-                            <img src="/storage/{{$main->local_image}}"
-                                 alt="{{$main->title}}" class="img-full img-fluid img-md">
-                        </a>
+                        <div class="item">
+                            <a href="{{route('link',$main)}}" target="_blank">
+                                <img async src="/storage/{{$main->local_image}}"
+                                     alt="{{$main->title}}" class="img-full img-fluid img-md">
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-sm-12">
-                    <p>{{$main->description}}</p>
+                <div class="row mt-4">
+                    <div class="col-sm-12">
+                        <p>{{$main->description}}</p>
+                    </div>
                 </div>
 
             </main>
 
 
-            <div class="row mt-4">
+            <div class="row mt-4 v-center">
 
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <h2>Популярное по этой теме</h2>
                     @foreach($groups as $item)
                         <div class="pb-5">
@@ -47,7 +51,7 @@
                             <div class="float-sm-right v-center">
                                 <time class="mr-1">{{$item->created_at->format('H:i')}}</time>
                                 <span>
-                            <img src="/storage/{{$item->source->logo}}">
+                            <img async src="/storage/{{$item->source->logo}}">
                                     {{$item->source->host}}
                         </span>
                             </div>
@@ -55,8 +59,12 @@
                     @endforeach
                 </div>
 
-                <div class="col-md-4">
-                    <p>Реклама</p>
+                <div class="col-md-6">
+
+                    <div class="bg-dark v-center" style="min-height: 500px">
+                        <h3 class="text-warning font-weight-light">Реклама</h3>
+                    </div>
+
                 </div>
 
             </div>

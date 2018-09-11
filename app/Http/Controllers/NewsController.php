@@ -55,7 +55,7 @@ class NewsController extends Controller
     public function show(Group $group)
     {
         $ids = array_keys($group->news);
-        $groups = Article::whereIn('id', $ids)->orderBy('description')->get();
+        $groups = Article::whereIn('id', $ids)->get();
         $main = $groups->slice(0, 1)->first();
 
         return view('page', [

@@ -7,9 +7,9 @@
         <div class="float-sm-right v-center">
             <time class="mr-1">{{$item->created_at->format('H:i')}}</time>
             <span>
-                            <img src="/storage/{{$item->source->logo}}">
+                            <img async src="/storage/{{$item->source->logo}}">
                 {{$item->source->host}}
-                        </span>
+            </span>
         </div>
     </div>
 @endforeach

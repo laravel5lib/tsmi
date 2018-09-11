@@ -131,7 +131,7 @@ class Group extends Model
                     continue;
                 }
 
-                array_push($words, $word);
+                $words[] = $word;
             }
         });
 
@@ -193,19 +193,15 @@ class Group extends Model
     }
 
     /**
-     * @param $val
+     * Убираем знаки препинания и прочие символы
+     *
+     * @param $value
      *
      * @return mixed
      */
-    private function removePunctuationMarks($val): string
+    private function removePunctuationMarks($value): string
     {
-        //убираем знаки препинания и прочие символы
-        $val = str_replace(".", "", $val);
-        $val = str_replace(",", "", $val);
-        $val = str_replace("/", "", $val);
-        $val = str_replace(";", "", $val);
-
-        return $val;
+        return str_replace(['.', ',','/', ';'], '', $value);
     }
 
     /**
@@ -236,7 +232,7 @@ class Group extends Model
                 $count = $count . '0';
             }
 
-            return intval($percent / $count);
+            return (int) ($percent / $count);
         }
 
         foreach ($texts as $item) {

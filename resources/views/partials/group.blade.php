@@ -9,7 +9,7 @@
                                 <span class="bg-white p-1">
                                         <time class="mr-1">{{$item->article->created_at->format('H:i')}}</time>
                                         <span>
-                                            <img src="/storage/{{optional($item->article->source)->logo}}">
+                                            <img async src="/storage/{{optional($item->article->source)->logo}}">
                                             {{optional($item->article->source)->host}}
                                         </span>
                                 </span>
@@ -19,7 +19,8 @@
                             </div>
                         </div>
                     </div>
-                    <img src="/storage/{{$item->article->local_image}}" alt="{{$item->article->title}}" class="img-full img-fluid img-md">
+                    <img async src="/storage/{{$item->article->local_image}}" alt="{{$item->article->title}}"
+                         class="img-full img-fluid img-md">
                 </a>
             </div>
         </div>
@@ -38,14 +39,15 @@
                             <span class="bg-white p-1">
                                 <time class="mr-1">{{$item->article->created_at->format('H:i')}}</time>
                                 <span>
-                                    <img src="/storage/{{optional($item->article->source)->logo}}">
+                                    <img async src="/storage/{{optional($item->article->source)->logo}}">
                                     {{optional($item->article->source)->host}}
                                 </span>
                             </span>
                         </div>
                     </div>
                     </div>
-                <img src="/storage/{{$item->article->local_image}}" alt="{{$item->article->title}}" class="img-full img-fluid img-sm">
+                <img async src="/storage/{{$item->article->local_image}}" alt="{{$item->article->title}}"
+                     class="img-full img-fluid img-sm">
             </a>
         </div>
         <div class="mt-2">
@@ -68,17 +70,18 @@
                                         <span class="bg-white p-1">
                                             <time class="mr-1">{{$item->article->created_at->format('H:i')}}</time>
                                             <span>
-                                                <img src="/storage/{{optional($item->article->source)->logo}}">
+                                                <img async src="/storage/{{optional($item->article->source)->logo}}">
                                                 {{optional($item->article->source)->host}}
                                             </span>
                                         </span>
-                                        <p class="h1 text-white pt-2 pr-5 pb-4">
+                                        <p class="h2 text-white pt-2 pr-5 pb-4">
                                           {{$item->article->title}}
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                            <img src="/storage/{{$item->article->local_image}}" alt="{{$item->article->title}}" class="img-full img-fluid">
+                            <img async src="/storage/{{$item->article->local_image}}" alt="{{$item->article->title}}"
+                                 class="img-full img-fluid">
                         </a>
                     </div>
                 @endforeach
@@ -95,14 +98,15 @@
                                         <span class="bg-white p-1">
                                             <time class="mr-1">{{$item->article->created_at->format('H:i')}}</time>
                                             <span>
-                                                <img src="/storage/{{optional($item->article->source)->logo}}">
+                                                <img async src="/storage/{{optional($item->article->source)->logo}}">
                                                 {{optional($item->article->source)->host}}
                                             </span>
                                         </span>
                                     </div>
                                 </div>
                             </div>
-                            <img src="/storage/{{$item->article->local_image}}" alt="{{$item->article->title}}" class="img-full img-fluid img-sm">
+                            <img async src="/storage/{{$item->article->local_image}}" alt="{{$item->article->title}}"
+                                 class="img-full img-fluid img-sm">
                         </a>
                     </div>
                     <div class="mt-2">
@@ -123,7 +127,7 @@
                     <div class="float-sm-right v-center">
                         <time class="mr-1">{{$item->article->created_at->format('H:i')}}</time>
                         <span>
-                            <img src="/storage/{{$item->article->source->logo}}">
+                            <img async src="/storage/{{$item->article->source->logo}}">
                             {{$item->article->source->host}}
                         </span>
                     </div>

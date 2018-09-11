@@ -41,13 +41,9 @@
     <div class="site-header sticky-top bg-dark" style="background: #333333;">
         <div class="container d-flex flex-column flex-md-row justify-content-between" style="align-items: center;">
             <a href="{{url('/')}}" class="mr-5">
-                <img src="/img/logo.svg" height="50px" alt="Responsive image">
+                <img async src="/img/logo.svg" height="50px" alt="Responsive image">
             </a>
             <h5 class="my-0 mr-md-auto font-weight-normal text-white">15:17, 18 июля, среда</h5>
-            <div class="my-2 my-md-0 mr-md-auto ml-md-auto">
-                <a class="p-2 text-white" href="#">Только главное</a>
-                <a class="p-2 text-white" href="#">Всё подрят</a>
-            </div>
 
             <div class="my-2 my-md-0">
                 <span class="p-2 text-white">
@@ -79,7 +75,7 @@
     <div class="pt-4 my-md-5 pt-md-5 border-top">
         <div class="row">
             <div class="col-12 col-md">
-                <img class="mb-2" height="50px" src="/img/logo2.svg">
+                <img async class="mb-2" height="50px" src="/img/logo2.svg">
                 <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
             </div>
             <div class="col-6 col-md">
@@ -144,7 +140,7 @@
     })(document, window, "yandex_metrika_callbacks2");
 </script>
 <noscript>
-    <div><img src="https://mc.yandex.ru/watch/49787614" style="position:absolute; left:-9999px;" alt=""/></div>
+    <div><img async src="https://mc.yandex.ru/watch/49787614" style="position:absolute; left:-9999px;" alt=""/></div>
 </noscript>
 <!-- /Yandex.Metrika counter -->
 

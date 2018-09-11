@@ -11,7 +11,7 @@ export default class extends Controller {
 
 
         $(window).scroll(function () {
-            if ($(window).scrollTop() >= $(document).height() - $(window).height() - 300) {
+            if ($(window).scrollTop() >= $(document).height() - $(window).height() - 800) {
                 controller.loadMore();
             }
         });
